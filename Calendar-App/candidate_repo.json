@@ -1,0 +1,81 @@
+[
+    {
+        "Interview Groups": [
+            {
+                "150": {
+                    "Round2": "darren.street",
+                    "Round3": "jon.watson",
+                    "Round1": "tommy.barnes"
+                }
+            }
+        ],
+        "Availability": [
+            {
+                "Tim.Gietl": [
+                    {
+                        "[Interview Slot] Test": {
+                            "start": "2016-06-14 11:00:00",
+                            "end": "2016-06-14 12:00:00"
+                        }
+                    },
+                    {
+                        "[Interview Slot] Test": {
+                            "start": "2016-06-14 11:00:00",
+                            "end": "2016-06-14 12:00:00"
+                        }
+                    }
+                ],
+                "Tommy.Barnes": [
+                    {
+                        "[Interview Slot] testing": {
+                            "start": "2016-06-15 12:00:00",
+                            "end": "2016-06-15 13:00:00"
+                        }
+                    },
+                    {
+                        "[Interview Slot]": {
+                            "start": "2016-06-15 15:30:00",
+                            "end": "2016-06-15 16:00:00"
+                        }
+                    },
+                    {
+                        "[Interview Slot]": {
+                            "start": "2016-06-15 16:30:00",
+                            "end": "2016-06-15 17:00:00"
+                        }
+                    },
+                    {
+                        "[Interview Slot] testing": {
+                            "start": "2016-06-15 12:00:00",
+                            "end": "2016-06-15 13:00:00"
+                        }
+                    },
+                    {
+                        "[Interview Slot]": {
+                            "start": "2016-06-15 15:30:00",
+                            "end": "2016-06-15 16:00:00"
+                        }
+                    },
+                    {
+                        "[Interview Slot]": {
+                            "start": "2016-06-15 16:30:00",
+                            "end": "2016-06-15 17:00:00"
+                        }
+                    },
+                    {
+                        "[Interview Slot]": {
+                            "start": "2016-06-15 15:30:00",
+                            "end": "2016-06-15 16:00:00"
+                        }
+                    },
+                    {
+                        "[Interview Slot]": {
+                            "start": "2016-06-15 16:30:00",
+                            "end": "2016-06-15 17:00:00"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+]
