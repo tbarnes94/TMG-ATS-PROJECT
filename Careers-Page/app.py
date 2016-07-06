@@ -152,6 +152,7 @@ def post_data():
     resume_name = '%s-%s_(%s).pdf' % (request.form['First'], request.form['Last'], new_issue.key)
 
     # write resume PDF to server location
+    d = request.get_data()
     with open (resume_name,'w') as fh:
         fh.write(d[d.find("%PDF"):len(d)-59])
     
