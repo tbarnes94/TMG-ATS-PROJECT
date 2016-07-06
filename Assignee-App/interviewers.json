@@ -1,0 +1,80 @@
+[
+    {
+        "Intern": [
+            {
+                "Trader": {
+                    "Round1": [
+                        "David Erickson",
+                        "Patrick Jia",
+                        "Jonathan Osting",
+                        "Zachary Brown",
+                        "Dmitry Glumov",
+                        "Kris Williams",
+                        "Dan Lewis",
+                        "Zhao Zhang",
+                        "Marc De Murat",
+                        "Felipe Parra",
+                        "Christian Totera",
+                        "Tyler Crookston",
+                        "Josh Leonard-Goodwill",
+                        "Steven Burkholder",
+                        "Jonathan Schoder",
+                        "David Lorentzen",
+                        "John Kato",
+                        "Josh Matalon"
+                    ],
+                    "Round2": [
+                        "Mark Bauer",
+                        "James Eun",
+                        "Michael Goff",
+                        "Chris Barnes",
+                        "Adam Machones",
+                        "David Nole"
+                    ],
+                    "Round3": [
+                        "Plinio Gayares",
+                        "Spencer Burns"
+                    ]
+                }
+            }
+        ],
+        "Full Time": [
+            {
+                "Trader": {
+                    "Round1": [
+                        "David Erickson",
+                        "Patrick Jia",
+                        "Jonathan Osting",
+                        "Zachary Brown",
+                        "Dmitry Glumov",
+                        "Kris Williams",
+                        "Dan Lewis",
+                        "Zhao Zhang",
+                        "Marc De Murat",
+                        "Felipe Parra",
+                        "Christian Totera",
+                        "Tyler Crookston",
+                        "Josh Leonard-Goodwill",
+                        "Steven Burkholder",
+                        "Jonathan Schoder",
+                        "David Lorentzen",
+                        "John Kato",
+                        "Josh Matalon"
+                    ],
+                    "Round2": [
+                        "Mark Bauer",
+                        "James Eun",
+                        "Michael Goff",
+                        "Chris Barnes",
+                        "Adam Machones",
+                        "David Nole"
+                    ],
+                    "Round3": [
+                        "Plinio Gayares",
+                        "Spencer Burns"
+                    ]
+                }
+            }
+        ]
+    }
+]
