@@ -73,55 +73,55 @@ def test():
 def post_data():
     # Retrieve data from Career website via HTTP POST request
     # 'body' list that will store the POST request's 'multipart/form-data' content
-    d = request.get_data()
-    body = [{'Header':[{}],'Content':[]}]
+    # d = request.get_data()
+    # body = [{'Header':[{}],'Content':[]}]
 
-    # HEADER of multipart/form-data payload
-    # NOTE: Probably will not need Header information, but just in case...
-    hdr = sanitize(d[0:57])
+    # # HEADER of multipart/form-data payload
+    # # NOTE: Probably will not need Header information, but just in case...
+    # hdr = sanitize(d[0:57])
 
-    # Indices where HEADER occurs
-    # Dispense the last one, as this is the end of the file
-    ind = [m.start()+57 for m in re.finditer(hdr,d)]
-    ind = ind[:len(ind)-1]
+    # # Indices where HEADER occurs
+    # # Dispense the last one, as this is the end of the file
+    # ind = [m.start()+57 for m in re.finditer(hdr,d)]
+    # ind = ind[:len(ind)-1]
 
-    # Dictionary for storing Candidate profile information
-    # Store the header under the 'Header' namespace of 'body'
-    # Store the 'Content-Disposition'
-    my_dict = {}
-    body[0]['Header'][0]['Header'] = hdr
-    body[0]['Header'][0]['Content-Disposition'] = 'form-data'
+    # # Dictionary for storing Candidate profile information
+    # # Store the header under the 'Header' namespace of 'body'
+    # # Store the 'Content-Disposition'
+    # my_dict = {}
+    # body[0]['Header'][0]['Header'] = hdr
+    # body[0]['Header'][0]['Content-Disposition'] = 'form-data'
 
-    # Looping through all occurrences of the HEADER
-    # NOTE: Many of these index offsets are hardcoded because their locations will not change, sorry for any confusion
-    for place, item in enumerate(ind):
+    # # Looping through all occurrences of the HEADER
+    # # NOTE: Many of these index offsets are hardcoded because their locations will not change, sorry for any confusion
+    # for place, item in enumerate(ind):
 
-        # Does not loop through on the last index to avoid IndexError
-        if (place+1) < len(ind):
-            # 'substring' is a portion of the data retrieved segmented by HEADER occurrences
-            substring = d[ind[place]:ind[place+1]-56]
+    #     # Does not loop through on the last index to avoid IndexError
+    #     if (place+1) < len(ind):
+    #         # 'substring' is a portion of the data retrieved segmented by HEADER occurrences
+    #         substring = d[ind[place]:ind[place+1]-56]
 
-            # Does not run if 'name' is not found in substring (no desirable content)
-            if d[ind[place]:ind[place+1]-56].find('name') != -1:
+    #         # Does not run if 'name' is not found in substring (no desirable content)
+    #         if d[ind[place]:ind[place+1]-56].find('name') != -1:
 
-                # Index of where 'name' occurs in the substring
-                nameIndex = substring.find('name')
+    #             # Index of where 'name' occurs in the substring
+    #             nameIndex = substring.find('name')
 
-                # Index of the closing quotation mark of an attribute (EX: name="Last"\r\nBarnes\r\n)
-                #                                                                    ^
-                quoteIndex = substring[nameIndex+6:].find('"') + (nameIndex+6) #double quotes
+    #             # Index of the closing quotation mark of an attribute (EX: name="Last"\r\nBarnes\r\n)
+    #             #                                                                    ^
+    #             quoteIndex = substring[nameIndex+6:].find('"') + (nameIndex+6) #double quotes
 
-                # The attribute between the quotes will be the 'Key' when you store the profile content in the JSON object payload
-                key = substring[nameIndex+6:quoteIndex]
+    #             # The attribute between the quotes will be the 'Key' when you store the profile content in the JSON object payload
+    #             key = substring[nameIndex+6:quoteIndex]
 
-                # Store content into JSON payload by dynamic key
-                my_dict[key] = sanitize(substring[quoteIndex+2:len(substring)-1])
+    #             # Store content into JSON payload by dynamic key
+    #             my_dict[key] = sanitize(substring[quoteIndex+2:len(substring)-1])
 
-    # Append content to the appropriate namespace
-    body[0]['Content'].append(my_dict)
+    # # Append content to the appropriate namespace
+    # body[0]['Content'].append(my_dict)
 
-    # shorthanding to just the content part of the JSON object
-    content = body[0]['Content'][0]
+    # # shorthanding to just the content part of the JSON object
+    # content = body[0]['Content'][0]
 
     # JSON object corresponding to Candidate's issue fields
     # data = api_request % (content['First'],content['Last'],content['Email'],content['Phone'],content['Position'],content['PositionType'],content['Location'],content['School'],content['DegreeType']+' '+content['Degree'],content['Position']+\
@@ -130,26 +130,26 @@ def post_data():
     issue_dict={
             'project': { 'name': 'JIRA-ATS', 'key': 'ATS' },
             'issuetype': { 'name': 'Task' },
-            'customfield_10783': '%s' % content['First'],
-            'customfield_10784': '%s' % content['Last'],
-            'customfield_10787': '%s' % content['Email'],
-            'customfield_10792': '%s' % content['Phone'],
-            'customfield_10790': '%s' % content['Position'],
-            'customfield_10791': '%s' % content['PositionType'],
-            'customfield_10794': '%s' % content['Location'],
-            'customfield_10788': '%s' % content['School'],
-            'customfield_10789': '%s' % content['DegreeType'] + ' ' + content['Degree'],
-            'summary': '%s' % content['Position']+' | '+content['PositionType']+' | '+content['Location']+' - '+content['Last']+','+content['First'],
+            'customfield_10783': '%s' % request.form['First'],
+            'customfield_10784': '%s' % request.form['Last'],
+            'customfield_10787': '%s' % request.form['Email'],
+            'customfield_10792': '%s' % request.form['Phone'],
+            'customfield_10790': '%s' % request.form['Position'],
+            'customfield_10791': '%s' % request.form['PositionType'],
+            'customfield_10794': '%s' % request.form['Location'],
+            'customfield_10788': '%s' % request.form['School'],
+            'customfield_10789': '%s' % request.form['DegreeType'] + ' ' + request.form['Degree'],
+            'summary': '%s' % request.form['Position']+' | '+request.form['PositionType']+' | '+request.form['Location']+' - '+request.form['Last']+','+request.form['First'],
             'description': '[Write observations of the candidate here]'
             }
-    # creates issue via JIRA REST API using 'curl' and stores the output in r
+    # REST API using 'curl' and stores the output in r
     # r = subprocess.check_output(['curl','-D-','-u','tommy.barnes:password','-X','POST','--data',data,'-H','Content-Type: application/json',create_issue_url])
     new_issue = jira.create_issue(fields=issue_dict, prefetch=True)
     # issue key auto-generated by JIRA corresponding to Candidate
     # issue_key = json.loads(r.split()[-1])['key']
 
     # distinct file name for Candidate's resume
-    resume_name = '%s-%s_(%s).pdf' % (content['First'], content['Last'], new_issue.key)
+    resume_name = '%s-%s_(%s).pdf' % (request.form['First'], request.form['Last'], new_issue.key)
 
     # write resume PDF to server location
     with open (resume_name,'w') as fh:
