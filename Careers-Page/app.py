@@ -16,7 +16,7 @@ app = Flask(__name__)
 url = "http://0.0.0.0:5000"
 # URL for creation of issues via JIRA REST API
 # create_issue_url = "http://testjira.transmarketgroup.com:8080/rest/api/2/issue/"
-jira_options = { 'server': 'http://testjira.transmarketgroup.com:8080/' }
+jira_options = { 'server': 'http://64.94.36.24:8080/' }
 
 jira = JIRA(options=jira_options, basic_auth=('tommy.barnes', 'password'))
 
