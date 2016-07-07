@@ -68,6 +68,20 @@ def index():
 def test():
     return 'TESTING TEXT'
 
+# Route for post request webhooks
+@app.route('/webhooks', methods = ["POST"])
+def webhooks():
+    print "#################"
+    print "Web hook Received"
+
+    data = request.get_json()
+    issue = data['issue']
+    print "Issue fields:"
+    fields = issue['fields']
+    print fields
+    print "#################"
+
+
 # Function that handles HTTP POST requests
 @app.route("/data", methods=['POST'])
 def post_data():
