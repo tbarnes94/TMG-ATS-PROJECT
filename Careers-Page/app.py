@@ -80,7 +80,7 @@ def webhooks():
     fields = issue['fields']
     print fields
     print "#################"
-
+    return "OK"
 
 # Function that handles HTTP POST requests
 @app.route("/data", methods=['POST'])
