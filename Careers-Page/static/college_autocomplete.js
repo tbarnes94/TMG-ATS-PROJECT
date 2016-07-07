@@ -4,7 +4,7 @@ $(document).ready(function() {
 
 	var dataList = document.getElementById('json-datalist');
 
-	$.getJSON( "colleges.json").done(function( data ) {
+	$.getJSON( "../static/colleges.json").done(function( data ) {
 		// console.log(data);
 		// console.log(data[0]);
 		data.forEach(function(college){
