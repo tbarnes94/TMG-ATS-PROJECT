@@ -153,6 +153,9 @@ def post_data():
             'customfield_10794': '%s' % request.form['Location'],
             'customfield_10788': '%s' % request.form['School'],
             'customfield_10789': '%s' % request.form['DegreeType'] + ' ' + request.form['Degree'],
+            'customfield_10909': '%s' % "daniel.smith" #hard coded for now
+            'customfield_10910': '%s' % "tommy.barnes"
+            'customfield_10911': '%s' % "daniel.smith"
             'summary': '%s' % request.form['Position']+' | '+request.form['PositionType']+' | '+request.form['Location']+' - '+request.form['Last']+','+request.form['First'],
             'description': '[Write observations of the candidate here]'
             }
