@@ -176,6 +176,10 @@ def post_data():
     jira.add_attachment(new_issue, resume_name)
     os.remove(resume_name)
 
+    # Assigning the 3 interviewers...
+
+    new_issue.update(fields = {"Assignee 1" : "daniel.smith", "Assignee 2" : "tommy.barnes", "Assignee 3" : "daniel.smith"})
+
     # Routes the Candidate to a page that thanks him/her for submitting
     return render_template('submitted.html')
 
