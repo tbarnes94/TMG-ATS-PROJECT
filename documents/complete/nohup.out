@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/tmgaws/TMG-ATS-PROJECT/Careers-Page/app.py", line 12, in <module>
+    import python.email_handler as email_handler
+  File "/home/tmgaws/TMG-ATS-PROJECT/Careers-Page/python/email_handler.py", line 68, in <module>
+    send_email({"EMAIL" : "daniel.smith@aardv.com", "FIRST" :"Daniel", "POSITION" : "Trader"}, accept_message)
+  File "/home/tmgaws/TMG-ATS-PROJECT/Careers-Page/python/email_handler.py", line 59, in send_email
+    attachment.set_payload(open(template_path, "rb").read())
+IOError: [Errno 2] No such file or directory: '/home/tmgaws/TMG-ATS-PROJECT/documents/complete/Testing_Daniel_Smith.docx'
