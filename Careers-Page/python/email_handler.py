@@ -59,7 +59,7 @@ def send_email(recipient, template):
 	attachment = MIMEBase('application', "octet-stream")
 	attachment.set_payload(open(template_path, "rb").read())
 	Encoders.encode_base64(attachment)
-	attachment.add_header('Content-Disposition', 'attachment; filename="Employee Agreement"')
+	attachment.add_header('Content-Disposition', 'attachment; filename="Employee Agreement.docx"')
 	msg.attach(attachment)
 
 	server.sendmail(aardv_email, recipient['EMAIL'], msg.as_string())

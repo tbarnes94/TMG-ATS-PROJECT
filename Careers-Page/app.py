@@ -106,6 +106,8 @@ def webhooks():
         elif transition['transitionName'] == EXAM_COMPLETE:
             print transition['transitionName']
         elif transition['transitionName'] == OFFER_MADE:
+            # TODO: get dictionary out of issue with all important fields
+
             dic = {"POSITION":"Trader","EMPLOYEE" : "Daniel Smith", "FIRST" : "Daniel", "LAST" : "Smith", "EMAIL" : "daniel.smith@aardv.com"}
             auto_populate.create_document("Testing", dic)
 	    print os.getenv("EMAIL")
