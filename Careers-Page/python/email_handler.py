@@ -1,7 +1,7 @@
 # Testing emails in python
 
 import smtplib
-import os
+import os, time
 
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEBase import MIMEBase
@@ -37,8 +37,9 @@ TMG Recruiting
 
 template_path = "/home/tmgaws/TMG-ATS-PROJECT/documents/complete/Testing_Daniel_Smith.docx"
 
-aardv_email = os.environ["EMAIL"]
-aardv_pswd = os.environ["PSWD"]
+aardv_email = os.getenv("EMAIL")
+aardv_pswd = os.getenv("PSWD")
+
 
 # Takes a recipient dictionary which contains all of relevant info of applicant
 # (first name, last name, position they were applying to, email)
@@ -64,5 +65,5 @@ def send_email(recipient, template):
 	server.sendmail(aardv_email, recipient['EMAIL'], msg.as_string())
 	server.quit()
 	print "Email sent!"
-
-send_email({"EMAIL" : "daniel.smith@aardv.com", "FIRST" :"Daniel", "POSITION" : "Trader"}, accept_message)
+	
+#send_email({"EMAIL" : "daniel.smith@aardv.com", "FIRST" :"Daniel", "POSITION" : "Trader"}, accept_message)

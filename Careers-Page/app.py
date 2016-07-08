@@ -68,7 +68,7 @@ def webhooks():
     #print "Web hook Received"
     #print "#################"
     data = request.get_json()
-    
+    print os.environ    
     issue = data['issue']
     '''
     print data
@@ -106,9 +106,11 @@ def webhooks():
         elif transition['transitionName'] == EXAM_COMPLETE:
             print transition['transitionName']
         elif transition['transitionName'] == OFFER_MADE:
-            dic = {"EMPLOYEE" : "Daniel Smith", "FIRST" : "Daniel", "LAST" : "Smith", "EMAIL" : "daniel.smith@aardv.com"}
+            dic = {"POSITION":"Trader","EMPLOYEE" : "Daniel Smith", "FIRST" : "Daniel", "LAST" : "Smith", "EMAIL" : "daniel.smith@aardv.com"}
             auto_populate.create_document("Testing", dic)
-            email_handler(dic, email_handler.accept_message)
+	    print os.getenv("EMAIL")
+	    print "EMAIL ^"
+            email_handler.send_email(dic, email_handler.accept_message)
             print transition['transitionName']
         elif transition['transitionName'] == "Create":
             print data['issue'].keys()
