@@ -9,6 +9,7 @@ from flask import request, render_template, jsonify, url_for
 from jira import JIRA
 import json, re, os
 import python.auto_populate as auto_populate
+import python.email_handler as email_handler
 
 # instantiates the Flask application
 app = Flask(__name__)
@@ -105,7 +106,9 @@ def webhooks():
         elif transition['transitionName'] == EXAM_COMPLETE:
             print transition['transitionName']
         elif transition['transitionName'] == OFFER_MADE:
-            auto_populate.create_document("Testing", {"EMPLOYEE" : "Daniel Smith","FIRST":"Daniel","LAST":"Smith"})
+            dic = {"EMPLOYEE" : "Daniel Smith", "FIRST" : "Daniel", "LAST" : "Smith", "EMAIL" : "daniel.smith@aardv.com"}
+            auto_populate.create_document("Testing", dic)
+            email_handler(dic, email_handler.accept_message)
             print transition['transitionName']
         elif transition['transitionName'] == "Create":
             print data['issue'].keys()
