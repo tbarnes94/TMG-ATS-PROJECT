@@ -22,29 +22,20 @@ jira = JIRA(options=jira_options, basic_auth=('tommy.barnes', 'password'))
 
 global data
 
-# Template for the JSON object that becomes the issue fields:
-    # First Name
-    # Last Name
-    # Email Address
-    # Phone Number
-    # Position
-    # Position Type
-    # Location
-    # Degree Type + Degree
-    # Issue Title ("Position | Position Type | Location - Last, First")
-# api_request = '{ "fields": { "project": { "name": "JIRA-ATS", "key": "ATS" },' \
-# + ' "issuetype": { "name": "Task" },' \
-# + ' "customfield_10783": "%s",' \
-# + ' "customfield_10784": "%s",' \
-# + ' "customfield_10787": "%s",' \
-# + ' "customfield_10792": "%s",' \
-# + ' "customfield_10790": "%s",' \
-# + ' "customfield_10791": "%s",' \
-# + ' "customfield_10794": "%s",' \
-# + ' "customfield_10788": "%s",' \
-# + ' "customfield_10789": "%s",' \
-# + ' "summary": "%s", '\
-# + ' "description": "[Write observations of the candidate here]"} }'
+#####################
+#    Constants      #
+#####################
+
+BLACKLIST = "Reject Blacklist"
+WHITELIST = "Reject Whitelist"
+MOVED_ON = "Moved On"
+PHONE_SCREEN_REQUESTED = "Request Phone Screen"
+INTERVIEW_ASSIGNED = "Assign Interview"
+EXAM_ASSIGNED = "Assign Exam"
+INTERVIEW_COMPLETE = "Interview Evaluation"
+EXAM_COMPLETE = "Exam Completed"
+OFFER_MADE = "Approve"
+
 
 # Function that removes non-standard characters from profile information
 def sanitize(string):
@@ -73,13 +64,61 @@ def test():
 def webhooks():
     print "#################"
     print "Web hook Received"
-
-    data = request.get_json()
-    issue = data['issue']
-    print "Issue fields:"
-    fields = issue['fields']
-    print fields
     print "#################"
+    data = request.get_json()
+    
+    issue = data['issue']
+    '''
+    print data
+    print "**********************"
+
+    How to get parent field from a sub-task
+    print fields['parent']
+    print fields['parent']['key']'''
+    if 'transition' in data.keys():
+        transition = data['transition']
+        # stupid python with no switch cases
+
+        # Handle various transitions however you want (Guaranteed to have to_status)
+        if transition['transitionName'] == BLACKLIST:
+            '''
+            placeholders = {}
+            placeholders["first"] = fields[FIRST]
+            placeholders["last"] = fields[LAST]
+            placeholders["email"] = "daniel.smith@aardv.com"
+            placeholders["position"] = fields[POSITION]
+            temp = "hi %s"
+            email.send_email(placeholders, temp)'''
+            print transition['transitionName']
+        elif transition['transitionName'] == WHITELIST:
+            print transition['transitionName']
+        elif transition['transitionName'] == MOVED_ON:
+            print transition['transitionName']
+        elif transition['transitionName'] == PHONE_SCREEN_REQUESTED:
+            print transition['transitionName']
+        elif transition['transitionName'] == INTERVIEW_COMPLETE:
+            print issue['fields']['parent'].keys()
+            print transition['transitionName']
+        elif transition['transitionName'] == EXAM_ASSIGNED:
+            print transition['transitionName']
+        elif transition['transitionName'] == EXAM_COMPLETE:
+            print transition['transitionName']
+        elif transition['transitionName'] == OFFER_MADE:
+            print transition['transitionName']
+        elif transition['transitionName'] == "Create":
+            print data['issue'].keys()
+            print data['issue']['fields']['issue'].keys()
+            print issue['fields']['parent'].keys()
+            print data['transition']
+        else:
+            # Should not happen
+            print "Transition not recognized: %s"%(transition['transitionName'])
+            print issue['fields']
+    else:
+        print "No transition: "
+        print data.keys()
+        print data['issue'].keys()
+        print issue['key']
     return "OK"
 
 # Function that handles HTTP POST requests
