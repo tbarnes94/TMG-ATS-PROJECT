@@ -8,6 +8,7 @@ from flask import Flask
 from flask import request, render_template, jsonify, url_for
 from jira import JIRA
 import json, re, os
+import python.auto_populate as auto_populate
 
 # instantiates the Flask application
 app = Flask(__name__)
@@ -62,9 +63,9 @@ def test():
 # Route for post request webhooks
 @app.route('/webhooks', methods = ["POST"])
 def webhooks():
-    print "#################"
-    print "Web hook Received"
-    print "#################"
+    #print "#################"
+    #print "Web hook Received"
+    #print "#################"
     data = request.get_json()
     
     issue = data['issue']
@@ -104,6 +105,7 @@ def webhooks():
         elif transition['transitionName'] == EXAM_COMPLETE:
             print transition['transitionName']
         elif transition['transitionName'] == OFFER_MADE:
+            auto_populate.create_document("Testing.docx", {"EMPLOYEE" : "Daniel Smith"})
             print transition['transitionName']
         elif transition['transitionName'] == "Create":
             print data['issue'].keys()
