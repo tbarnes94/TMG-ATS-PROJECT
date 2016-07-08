@@ -105,7 +105,7 @@ def webhooks():
         elif transition['transitionName'] == EXAM_COMPLETE:
             print transition['transitionName']
         elif transition['transitionName'] == OFFER_MADE:
-            auto_populate.create_document("Testing.docx", {"EMPLOYEE" : "Daniel Smith"})
+            auto_populate.create_document("Testing", {"EMPLOYEE" : "Daniel Smith","FIRST":"Daniel","LAST":"Smith"})
             print transition['transitionName']
         elif transition['transitionName'] == "Create":
             print data['issue'].keys()
