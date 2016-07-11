@@ -78,7 +78,8 @@ def send_email(recipient, template, attachments):
 # and returns new text
 def fill_placeholders(text, recipient, sender = {}):
 	for placeholder in recipient:
-		text.replace("{%s}"%(placeholder), recipient[placeholder])
+		text = text.replace("{%s}"%(placeholder), recipient[placeholder])
+		print placeholder
 	for placeholder in sender:
-		text.replace("{%s}"%(placeholder), sender[placeholder])
+		text = text.replace("{%s}"%(placeholder), sender[placeholder])
 	return text
