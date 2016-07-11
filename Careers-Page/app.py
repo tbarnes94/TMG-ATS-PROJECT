@@ -75,19 +75,10 @@ def test():
 
 # Route for post request webhooks
 @app.route('/webhooks', methods = ["POST"])
-def webhooks():
-    #print "#################"
-    #print "Web hook Received"
-    #print "#################"
+def webhooks():=
     data = request.get_json()
     issue = data['issue']
-    '''
-    print data
-    print "**********************"
-
-    How to get parent field from a sub-task
-    print fields['parent']
-    print fields['parent']['key']'''
+    
     if 'transition' in data.keys():
         transition = data['transition']
         # stupid python with no switch cases
@@ -119,11 +110,15 @@ def webhooks():
         elif transition['transitionName'] == OFFER_MADE:
             fields = issue['fields']
 
+            # Create dictionary for auto_populate as placeholders
             dic = { placeholder : fields[custom_fields[placeholder]] for placeholder in custom_fields }
             dic['EMPLOYEE'] = dic["FIRST"] + " " + dic["LAST"]
 
+            # Create filled out document
             auto_populate.create_document("Testing", dic)
-            email_handler.send_email(dic, email_handler.accept_message, ["Testing_%s_%s"%(dic["FIRST"],dic["LAST"])])
+
+            # Send document to candidate
+            email_handler.send_email(dic, email_handler.ACCEPT_MESSAGE, ["Testing_%s_%s"%(dic["FIRST"],dic["LAST"])])
             print transition['transitionName']
         elif transition['transitionName'] == "Create":
             print data['issue'].keys()

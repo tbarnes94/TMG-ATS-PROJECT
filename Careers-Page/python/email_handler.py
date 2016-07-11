@@ -9,7 +9,7 @@ from email.MIMEText import MIMEText
 from email import Encoders
 
 
-blacklist_message = '''From: From TMG Recruiting <%s>
+BLACKLIST_MESSAGE = '''From: From TMG Recruiting <%s>
 To: To %s <%s>
 Subject: Rejection Email
 
@@ -22,7 +22,7 @@ Best,
 TMG Recruiting
 '''
 
-accept_message = '''
+ACCEPT_MESSAGE = '''
 
 Hi {FIRST},
 
@@ -43,11 +43,13 @@ AARDV_PSWD = os.getenv("PSWD")
 # Takes a recipient dictionary which contains all of relevant info of applicant
 # (first name, last name, position they were applying to, email)
 def send_email(recipient, template, attachments):
+	# Connect to Gmail
 	server = smtplib.SMTP('smtp.gmail.com', 587)
 	server.starttls()
 	server.login(AARDV_EMAIL, AARDV_PSWD)
 
-	msg_text = fill_placeholders(accept_message, recipient)
+	# Create email text by filling in placeholders
+	msg_text = fill_placeholders(template, recipient)
 
 	# Create message and attach body
 	msg = MIMEMultipart()
@@ -71,7 +73,6 @@ def send_email(recipient, template, attachments):
 	# NEEDS TO BE CHANGED TO RECIPIENT EMAIL
 	server.sendmail(AARDV_EMAIL, AARDV_EMAIL, msg.as_string())
 	server.quit()
-	#print "Email sent!"
 	
 #send_email({"EMAIL" : "daniel.smith@aardv.com", "FIRST" :"Daniel", "POSITION" : "Trader"}, accept_message)
 

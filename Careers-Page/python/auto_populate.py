@@ -46,8 +46,6 @@ def create_document(template, placeholders):
 
 	template_doc.close()
 	edited_doc.close()
-	#print os.path.exists(os.path.join("%s"%(PATH_TO_DOCS), "complete"))
-	#print "Edit complete."
 
 def test_create_document():
 	create_document("Testing", {"EMPLOYEE" : "Daniel Smith", "FIRST" : "Daniel", "LAST" : "SMITH"})
