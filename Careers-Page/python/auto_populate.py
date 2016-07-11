@@ -27,7 +27,7 @@ def create_document(template, placeholders):
 	# deletes file if it already exists, and then rewrites file
 	name_of_file = "%s_%s_%s.docx"%(template, placeholders.get("FIRST"), placeholders.get("LAST"))
 	os.remove(os.path.join("%s"%(PATH_TO_DOCS), "complete", name_of_file))
-	edited_file = os.path.join("%s"%(PATH_TO_DOCS), "complete", ))
+	edited_file = os.path.join("%s"%(PATH_TO_DOCS), "complete", name_of_file)
 
 	# unzip the files
 	template_doc = zipfile.ZipFile(template_file)
