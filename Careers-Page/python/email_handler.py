@@ -70,7 +70,7 @@ def send_email(recipient, template, attachments):
 
 	server.sendmail(AARDV_EMAIL, recipient['EMAIL'], msg.as_string())
 	server.quit()
-	print "Email sent!"
+	#print "Email sent!"
 	
 #send_email({"EMAIL" : "daniel.smith@aardv.com", "FIRST" :"Daniel", "POSITION" : "Trader"}, accept_message)
 
@@ -79,7 +79,6 @@ def send_email(recipient, template, attachments):
 def fill_placeholders(text, recipient, sender = {}):
 	for placeholder in recipient:
 		text = text.replace("{%s}"%(placeholder), recipient[placeholder])
-		print placeholder
 	for placeholder in sender:
 		text = text.replace("{%s}"%(placeholder), sender[placeholder])
 	return text

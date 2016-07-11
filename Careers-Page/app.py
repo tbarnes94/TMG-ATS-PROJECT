@@ -38,6 +38,18 @@ INTERVIEW_COMPLETE = "Interview Evaluation"
 EXAM_COMPLETE = "Exam Completed"
 OFFER_MADE = "Approve"
 
+custom_fields = {
+    'FIRST'    : 'customfield_10783',
+    'LAST'     : 'customfield_10784',
+    'EMAIL'    : 'customfield_10787',
+    'PHONE'    : 'customfield_10792',
+    'POSITION' : 'customfield_10790',
+    'TYPE'     : 'customfield_10791',
+    'LOCATION' : 'customfield_10794',
+    'DEGREE'   : 'customfield_10788',
+    'TITLE'    : 'customfield_10789',
+}
+
 
 # Function that removes non-standard characters from profile information
 def sanitize(string):
@@ -68,7 +80,6 @@ def webhooks():
     #print "Web hook Received"
     #print "#################"
     data = request.get_json()
-    print os.environ    
     issue = data['issue']
     '''
     print data
@@ -107,8 +118,9 @@ def webhooks():
             print transition['transitionName']
         elif transition['transitionName'] == OFFER_MADE:
             # TODO: get dictionary out of issue with all important fields
+            fields = issue['fields']
 
-            dic = {"POSITION":"Trader","EMPLOYEE" : "Daniel Smith", "FIRST" : "Daniel", "LAST" : "Smith", "EMAIL" : "daniel.smith@aardv.com"}
+            dic = { placeholder : fields[custom_fields[placeholder]] for placeholder in custom_fields }
             auto_populate.create_document("Testing", dic)
             email_handler.send_email(dic, email_handler.accept_message, ["Testing_%s_%s"%(dic["FIRST"],dic["LAST"])])
             print transition['transitionName']
