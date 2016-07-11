@@ -47,7 +47,7 @@ def send_email(recipient, template, attachments):
 	server.starttls()
 	server.login(AARDV_EMAIL, AARDV_PSWD)
 
-	msg_text = template%(AARDV_EMAIL, recipient["FIRST"], recipient["EMAIL"], recipient["FIRST"], recipient["POSITION"])
+	msg_text = template%(recipient["FIRST"], recipient["POSITION"])
 
 	# Create message and attach body
 	msg = MIMEMultipart()
@@ -57,7 +57,7 @@ def send_email(recipient, template, attachments):
 
 	# Set headers TEMPORARY
 	msg['Subject'] = "TMG Application Status"
-	msg['From'] = me
+	msg['From'] = AARDV_EMAIL
 	msg['To'] = recipient["FIRST"] + recipient["LAST"]
 
 	# Add attachment
