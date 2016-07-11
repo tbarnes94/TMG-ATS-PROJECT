@@ -5,6 +5,9 @@ import os
 
 # ISSUE: only works when word is in one block. If no replacement, need to copy and paste placeholder in
 
+# Works when files have path: /home/some/files/documents/templates/{template}
+# Will create a directory with path: /home/some/files/documents/complete
+
 # In case any field has no value, allows to be fixed by hand
 EMPTY_FIELD = "_______________"
 
@@ -20,10 +23,10 @@ def create_document(template, placeholders):
 	template_file = os.path.join("%s"%(PATH_TO_DOCS), "templates", "%s.docx"%(template))
 	if not os.path.exists(os.path.join("%s"%(PATH_TO_DOCS), "complete")):
 		os.makedirs(os.path.join("%s"%(PATH_TO_DOCS), "complete"))
-		print "making path"
-	edited_file = os.path.join("%s"%(PATH_TO_DOCS), "complete", "%s_%s.docx"%(template,placeholders.get("FIRST") + "_" + placeholders.get("LAST")))
-	print "path exists"
-	print os.path.exists(os.path.join("%s"%(PATH_TO_DOCS), "complete"))
+		#print "making path"
+	edited_file = os.path.join("%s"%(PATH_TO_DOCS), "complete", "%s_%s_%s.docx"%(template,placeholders.get("FIRST"), placeholders.get("LAST")))
+	#print "path exists"
+	#print os.path.exists(os.path.join("%s"%(PATH_TO_DOCS), "complete"))
 
 	# unzip the files
 	template_doc = zipfile.ZipFile(template_file)
@@ -42,8 +45,8 @@ def create_document(template, placeholders):
 
 	template_doc.close()
 	edited_doc.close()
-	print os.path.exists(os.path.join("%s"%(PATH_TO_DOCS), "complete"))
-	print "Edit complete."
+	#print os.path.exists(os.path.join("%s"%(PATH_TO_DOCS), "complete"))
+	#print "Edit complete."
 
 def test_create_document():
 	create_document("Testing", {"EMPLOYEE" : "Daniel Smith", "FIRST" : "Daniel", "LAST" : "SMITH"})

@@ -110,9 +110,7 @@ def webhooks():
 
             dic = {"POSITION":"Trader","EMPLOYEE" : "Daniel Smith", "FIRST" : "Daniel", "LAST" : "Smith", "EMAIL" : "daniel.smith@aardv.com"}
             auto_populate.create_document("Testing", dic)
-	    print os.getenv("EMAIL")
-	    print "EMAIL ^"
-            email_handler.send_email(dic, email_handler.accept_message)
+            email_handler.send_email(dic, email_handler.accept_message, ["Testing_%s_%s"%(dic["FIRST"],dic["LAST"])])
             print transition['transitionName']
         elif transition['transitionName'] == "Create":
             print data['issue'].keys()

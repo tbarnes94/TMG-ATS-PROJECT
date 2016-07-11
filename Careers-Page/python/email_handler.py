@@ -35,20 +35,20 @@ TMG Recruiting
 
 '''
 
-template_path = "/home/tmgaws/TMG-ATS-PROJECT/documents/complete/Testing_Daniel_Smith.docx"
+template_path = "/home/tmgaws/TMG-ATS-PROJECT/documents/complete"
 
-aardv_email = os.getenv("EMAIL")
-aardv_pswd = os.getenv("PSWD")
+AARDV_EMAIL = os.getenv("EMAIL")
+AARDV_PSWD = os.getenv("PSWD")
 
 
 # Takes a recipient dictionary which contains all of relevant info of applicant
 # (first name, last name, position they were applying to, email)
-def send_email(recipient, template):
+def send_email(recipient, template, attachments):
 	server = smtplib.SMTP('smtp.gmail.com', 587)
 	server.starttls()
-	server.login(aardv_email, aardv_pswd)
+	server.login(AARDV_EMAIL, AARDV_PSWD)
 
-	msg_text = template%(aardv_email, recipient["FIRST"], recipient["EMAIL"], recipient["FIRST"], recipient["POSITION"])
+	msg_text = template%(AARDV_EMAIL, recipient["FIRST"], recipient["EMAIL"], recipient["FIRST"], recipient["POSITION"])
 
 	# Create message and attach body
 	msg = MIMEMultipart()
@@ -56,13 +56,15 @@ def send_email(recipient, template):
 	body.attach(MIMEText(msg_text))
 	msg.attach(body)
 
-	attachment = MIMEBase('application', "octet-stream")
-	attachment.set_payload(open(template_path, "rb").read())
-	Encoders.encode_base64(attachment)
-	attachment.add_header('Content-Disposition', 'attachment; filename="Employee Agreement.docx"')
-	msg.attach(attachment)
+	# Add attachment
+	for filename in attachments:
+		attachment = MIMEBase('application', "octet-stream")
+		attachment.set_payload(open(os.path.join(template_path, filename + ".docx"), "rb").read())
+		Encoders.encode_base64(attachment)
+		attachment.add_header('Content-Disposition', 'attachment; filename="%s.docx"'%(filename))
+		msg.attach(attachment)
 
-	server.sendmail(aardv_email, recipient['EMAIL'], msg.as_string())
+	server.sendmail(AARDV_EMAIL, recipient['EMAIL'], msg.as_string())
 	server.quit()
 	print "Email sent!"
 	
