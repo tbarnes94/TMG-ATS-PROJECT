@@ -22,13 +22,12 @@ Best,
 TMG Recruiting
 '''
 
-accept_message = '''From: From TMG Recruiting <%s>
-To: To %s <%s>
-Subject: Accept Email
+accept_message = '''
 
 Hi %s,
 
-Thank you for applying for the position of %s. We would be delighted if you could join the team. Fill out these documents...
+Thank you for applying for the position of %s. We would be delighted if you joined the team. Fill out these documents...
+
 Best,
 
 TMG Recruiting
@@ -55,6 +54,11 @@ def send_email(recipient, template, attachments):
 	body = MIMEMultipart('alternative')
 	body.attach(MIMEText(msg_text))
 	msg.attach(body)
+
+	# Set headers TEMPORARY
+	msg['Subject'] = "TMG Application Status"
+	msg['From'] = me
+	msg['To'] = recipient["FIRST"] + recipient["LAST"]
 
 	# Add attachment
 	for filename in attachments:
