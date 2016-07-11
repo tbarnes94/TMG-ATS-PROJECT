@@ -24,9 +24,9 @@ TMG Recruiting
 
 accept_message = '''
 
-Hi %s,
+Hi {FIRST},
 
-Thank you for applying for the position of %s. We would be delighted if you joined the team. Fill out these documents...
+Thank you for applying for the position of {POSITION}. We would be delighted if you joined the team. Fill out these documents...
 
 Best,
 
@@ -34,7 +34,7 @@ TMG Recruiting
 
 '''
 
-template_path = "/home/tmgaws/TMG-ATS-PROJECT/documents/complete"
+TEMPLATE_PATH = "/home/tmgaws/TMG-ATS-PROJECT/documents/complete"
 
 AARDV_EMAIL = os.getenv("EMAIL")
 AARDV_PSWD = os.getenv("PSWD")
@@ -47,7 +47,7 @@ def send_email(recipient, template, attachments):
 	server.starttls()
 	server.login(AARDV_EMAIL, AARDV_PSWD)
 
-	msg_text = template%(recipient["FIRST"], recipient["POSITION"])
+	msg_text = fill_placeholders(accept_message, recipient)
 
 	# Create message and attach body
 	msg = MIMEMultipart()
@@ -63,7 +63,7 @@ def send_email(recipient, template, attachments):
 	# Add attachment
 	for filename in attachments:
 		attachment = MIMEBase('application', "octet-stream")
-		attachment.set_payload(open(os.path.join(template_path, filename + ".docx"), "rb").read())
+		attachment.set_payload(open(os.path.join(TEMPLATE_PATH, filename + ".docx"), "rb").read())
 		Encoders.encode_base64(attachment)
 		attachment.add_header('Content-Disposition', 'attachment; filename="%s.docx"'%(filename))
 		msg.attach(attachment)
@@ -73,3 +73,12 @@ def send_email(recipient, template, attachments):
 	print "Email sent!"
 	
 #send_email({"EMAIL" : "daniel.smith@aardv.com", "FIRST" :"Daniel", "POSITION" : "Trader"}, accept_message)
+
+# Replaces placeholders in text with their value according to recirpient and sender dictionaries
+# and returns new text
+def fill_placeholders(text, recipient, sender = {}):
+	for placeholder in recipient:
+		text.replace("{%s}"%(placeholder), recipient[placeholder])
+	for placeholder in sender:
+		text.replace("{%s}"%(placeholder), sender[placeholder])
+	return text
