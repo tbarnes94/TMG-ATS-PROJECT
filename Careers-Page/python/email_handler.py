@@ -34,7 +34,7 @@ TMG Recruiting
 
 '''
 
-TEMPLATE_PATH = "/home/tmgaws/TMG-ATS-PROJECT/documents/complete"
+COMPLETED_PATH = "/home/tmgaws/TMG-ATS-PROJECT/documents/complete"
 
 AARDV_EMAIL = os.getenv("EMAIL")
 AARDV_PSWD = os.getenv("PSWD")
@@ -63,12 +63,13 @@ def send_email(recipient, template, attachments):
 	# Add attachment
 	for filename in attachments:
 		attachment = MIMEBase('application', "octet-stream")
-		attachment.set_payload(open(os.path.join(TEMPLATE_PATH, filename + ".docx"), "rb").read())
+		attachment.set_payload(open(os.path.join(COMPLETED_PATH, filename + ".docx"), "rb").read())
 		Encoders.encode_base64(attachment)
 		attachment.add_header('Content-Disposition', 'attachment; filename="%s.docx"'%(filename))
 		msg.attach(attachment)
 
-	server.sendmail(AARDV_EMAIL, recipient['EMAIL'], msg.as_string())
+	# NEEDS TO BE CHANGED TO RECIPIENT EMAIL
+	server.sendmail(AARDV_EMAIL, AARDV_EMAIL, msg.as_string())
 	server.quit()
 	#print "Email sent!"
 	

@@ -121,6 +121,7 @@ def webhooks():
             fields = issue['fields']
 
             dic = { placeholder : fields[custom_fields[placeholder]] for placeholder in custom_fields }
+            dic['EMPLOYEE'] = dic["FIRST"] + " " + dic["LAST"]
             auto_populate.create_document("Testing", dic)
             email_handler.send_email(dic, email_handler.accept_message, ["Testing_%s_%s"%(dic["FIRST"],dic["LAST"])])
             print transition['transitionName']
