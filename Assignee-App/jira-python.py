@@ -10,12 +10,15 @@ gc = gspread.authorize(credentials)
 
 wks = gc.open("Prototyping Interview Database").sheet1
 
+ROWS = 500
+COLS = 4
+
 def main():
-	for i in range(1,53*3):
-		if wks.cell(i+1,5).value != "":
-			print wks.cell(i+1,5).value
-			print wks.cell(i+1,6).value
-e			print wks.cell(i+1,7).value
+	for i in range(1,ROWS*COLS+1):
+		if wks.cell(i%ROWS,i%COLS).value != "":
+			print wks.cell(i%ROWS,i%COLS).value
+			# print wks.cell(i+1,6).value
+			# print wks.cell(i+1,7).value
 			raw_input()
 
 
