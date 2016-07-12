@@ -75,7 +75,7 @@ def test():
 
 # Route for post request webhooks
 @app.route('/webhooks', methods = ["POST"])
-def webhooks():=
+def webhooks():
     data = request.get_json()
     issue = data['issue']
     
