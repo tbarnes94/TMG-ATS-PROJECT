@@ -115,7 +115,7 @@ def parse(json_dict, values):
             ROW_COUNT += 1
     return json_dict
 
-def convert_worksheet(service, spreadsheetId, USrangeName, CHrangeName, NEXT_DAY):
+def convert_worksheet(service, spreadsheetId, USArangeName, CHrangeName, NEXT_DAY):
     json_dict = json.loads(
         '''
         [
@@ -534,7 +534,7 @@ def convert_worksheet(service, spreadsheetId, USrangeName, CHrangeName, NEXT_DAY
         ]
         ''')
     result = service.spreadsheets().values().get(
-    spreadsheetId=spreadsheetId, range=USrangeName).execute()
+    spreadsheetId=spreadsheetId, range=USArangeName).execute()
     values = result.get('values', [])
 
     json_dict = parse(json_dict, values)
@@ -562,12 +562,18 @@ def main():
     USArangeName = '[USA] Assignee DB!A1:ZZ500'
     CHrangeName = '[CH] Assignee DB!A1:ZZ500'
 
+    FIRST_DAY = datetime.datetime.now().replace(hour=0,minute=0,second=0,microsecond=0)
+    convert_worksheet(service, spreadsheetId, USArangeName, CHrangeName, FIRST_DAY)
+
     while True:
         if datetime.datetime.now() > NEXT_DAY:
             convert_worksheet(service, spreadsheetId, USArangeName, CHrangeName, NEXT_DAY)
             if CURRENT_DAY != None:
                 print("Removing interviewers-%s.json."%CURRENT_DAY)
                 os.remove("interviewers-%s.json"%CURRENT_DAY)
+            else:
+                print("Removing interviewers-%s.json."%FIRST_DAY)
+                os.remove("interviewers-%s.json"%FIRST_DAY)
             CURRENT_DAY = NEXT_DAY
             # NEXT_DAY = datetime.datetime.now() + datetime.timedelta(minutes=1)
             NEXT_DAY = datetime.datetime.now() + datetime.timedelta(days=1)
