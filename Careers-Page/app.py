@@ -7,7 +7,7 @@
 from flask import Flask
 from flask import request, render_template, jsonify, url_for
 from jira import JIRA
-import json, re, os
+import json, re, os, datetime, random
 import python.auto_populate as auto_populate
 import python.email_handler as email_handler
 
@@ -18,6 +18,8 @@ app = Flask(__name__)
 url = "http://0.0.0.0:5000"
 # URL for creation of issues via JIRA REST API
 # create_issue_url = "http://testjira.transmarketgroup.com:8080/rest/api/2/issue/"
+# jira_options = { 'server': 'http://testjira.transmarketgroup.com:8080/' }# LOCAL SERVER
+
 jira_options = { 'server': 'http://64.94.36.24:8080/' }
 
 jira = JIRA(options=jira_options, basic_auth=('tommy.barnes', 'password'))
@@ -28,6 +30,7 @@ global data
 #    Constants      #
 #####################
 
+CURRENT_DATE = datetime.datetime.now().replace(hour=0,minute=0,second=0,microsecond=0)
 BLACKLIST = "Reject Blacklist"
 WHITELIST = "Reject Whitelist"
 MOVED_ON = "Moved On"
@@ -48,8 +51,8 @@ custom_fields = {
     'LOCATION' : 'customfield_10794',
     'DEGREE'   : 'customfield_10788',
     'TITLE'    : 'customfield_10789',
+    'ASSIGNEE' : 'customfield_10909'
 }
-
 
 # Function that removes non-standard characters from profile information
 def sanitize(string):
@@ -63,6 +66,26 @@ def sanitize(string):
         c == "." or \
         c == "+" or \
         c == " ")
+
+def get_interviewer(my_list):
+    num_interviewers = len(my_list)
+    interviewer_index = random.randint(0,num_interviewers-1)
+    return my_list[interviewer_index]
+
+def lowerCase(letter):
+    return chr(ord(letter)+32)
+
+def reformat(attr, attr_type):
+    if attr_type == 'DegreeType':
+        return {'B.A': 'Undergraduate', 'B.S.': 'Undergraduate', 'M.A.': 'Graduate', 'M.S.': 'Graduate', 'PhD': 'Graduate'}[attr]
+    elif attr_type == 'PositionType':
+        return {'Internship': 'INTERN', 'Full Time': 'FULL TIME'}[attr]
+    elif attr_type == 'Position':
+        return {'Algorithmic Trader': 'Algorithmic Trader',
+                'Information Technology': 'Systems Engineer',
+                'Legal': 'Legal Representative',
+                'RV Arbitrage Trader': 'RV Trader',
+                'Software Developer': 'Software Engineer'}[attr]
 
 # Function that handles HTTP GET requests (renders the Career page)
 @app.route("/", methods=['GET'])
@@ -142,58 +165,13 @@ def post_data():
     # Retrieve data from Career website via HTTP POST request
     # 'body' list that will store the POST request's 'multipart/form-data' content
     d = request.get_data()
-    # body = [{'Header':[{}],'Content':[]}]
 
-    # # HEADER of multipart/form-data payload
-    # # NOTE: Probably will not need Header information, but just in case...
-    # hdr = sanitize(d[0:57])
+    with open('../Assignee-App/interviewers-%s.json'%CURRENT_DATE, 'rb') as fh:
+        my_dict = json.load(fh)
 
-    # # Indices where HEADER occurs
-    # # Dispense the last one, as this is the end of the file
-    # ind = [m.start()+57 for m in re.finditer(hdr,d)]
-    # ind = ind[:len(ind)-1]
-
-    # # Dictionary for storing Candidate profile information
-    # # Store the header under the 'Header' namespace of 'body'
-    # # Store the 'Content-Disposition'
-    # my_dict = {}
-    # body[0]['Header'][0]['Header'] = hdr
-    # body[0]['Header'][0]['Content-Disposition'] = 'form-data'
-
-    # # Looping through all occurrences of the HEADER
-    # # NOTE: Many of these index offsets are hardcoded because their locations will not change, sorry for any confusion
-    # for place, item in enumerate(ind):
-
-    #     # Does not loop through on the last index to avoid IndexError
-    #     if (place+1) < len(ind):
-    #         # 'substring' is a portion of the data retrieved segmented by HEADER occurrences
-    #         substring = d[ind[place]:ind[place+1]-56]
-
-    #         # Does not run if 'name' is not found in substring (no desirable content)
-    #         if d[ind[place]:ind[place+1]-56].find('name') != -1:
-
-    #             # Index of where 'name' occurs in the substring
-    #             nameIndex = substring.find('name')
-
-    #             # Index of the closing quotation mark of an attribute (EX: name="Last"\r\nBarnes\r\n)
-    #             #                                                                    ^
-    #             quoteIndex = substring[nameIndex+6:].find('"') + (nameIndex+6) #double quotes
-
-    #             # The attribute between the quotes will be the 'Key' when you store the profile content in the JSON object payload
-    #             key = substring[nameIndex+6:quoteIndex]
-
-    #             # Store content into JSON payload by dynamic key
-    #             my_dict[key] = sanitize(substring[quoteIndex+2:len(substring)-1])
-
-    # # Append content to the appropriate namespace
-    # body[0]['Content'].append(my_dict)
-
-    # # shorthanding to just the content part of the JSON object
-    # content = body[0]['Content'][0]
-
-    # JSON object corresponding to Candidate's issue fields
-    # data = api_request % (content['First'],content['Last'],content['Email'],content['Phone'],content['Position'],content['PositionType'],content['Location'],content['School'],content['DegreeType']+' '+content['Degree'],content['Position']+\
-    #     ' | '+content['PositionType']+' | '+content['Location']+' - '+content['Last']+','+content['First'])
+    ASSIGNEE_DISPLAY_NAME = get_interviewer(my_dict[0]["Locations"][request.form['Location']]["Degrees"][reformat(request.form['DegreeType'],'DegreeType')][reformat(request.form['PositionType'],'PositionType')]["Requisitions"][reformat(request.form['Position'],'Position')]["Round 1"])
+    ASSIGNEE_TUPLE = ASSIGNEE_DISPLAY_NAME.split(' ')
+    ASSIGNEE = lowerCase(ASSIGNEE_TUPLE[0][0]) + ASSIGNEE_TUPLE[0][1:] + '.' + lowerCase(ASSIGNEE_TUPLE[1][0]) + ASSIGNEE_TUPLE[1][1:]
 
     issue_dict={
             'project': { 'name': 'JIRA-ATS', 'key': 'ATS' },
@@ -202,22 +180,18 @@ def post_data():
             'customfield_10784': '%s' % request.form['Last'],
             'customfield_10787': '%s' % request.form['Email'],
             'customfield_10792': '%s' % request.form['Phone'],
-            'customfield_10790': '%s' % request.form['Position'],
+            'customfield_10790': '%s' % reformat(request.form['Position'],'Position'),
             'customfield_10791': '%s' % request.form['PositionType'],
             'customfield_10794': '%s' % request.form['Location'],
             'customfield_10788': '%s' % request.form['School'],
             'customfield_10789': '%s' % request.form['DegreeType'] + ' ' + request.form['Degree'],
-            'customfield_10909': '%s' % "daniel.smith",
-            'customfield_10910': '%s' % "tommy.barnes",
-            'customfield_10911': '%s' % "daniel.smith",
+            'customfield_10909': '%s' % ASSIGNEE,
             'summary': '%s' % request.form['Position']+' | '+request.form['PositionType']+' | '+request.form['Location']+' - '+request.form['Last']+','+request.form['First'],
             'description': '[Write observations of the candidate here]'
             }
     # REST API using 'curl' and stores the output in r
     # r = subprocess.check_output(['curl','-D-','-u','tommy.barnes:password','-X','POST','--data',data,'-H','Content-Type: application/json',create_issue_url])
     new_issue = jira.create_issue(fields=issue_dict, prefetch=True)
-    # issue key auto-generated by JIRA corresponding to Candidate
-    # issue_key = json.loads(r.split()[-1])['key']
 
     # distinct file name for Candidate's resume
     resume_name = '%s-%s_(%s).pdf' % (request.form['First'], request.form['Last'], new_issue.key)
@@ -232,10 +206,6 @@ def post_data():
     # attach resume to issue corresponding to 'issue_key' and delete it locally
     jira.add_attachment(new_issue, resume_name)
     os.remove(resume_name)
-
-    # Assigning the 3 interviewers...
-
-    #new_issue.update(fields = {"Assignee 1" : "daniel.smith", "Assignee 2" : "tommy.barnes", "Assignee 3" : "daniel.smith"})
 
     # Routes the Candidate to a page that thanks him/her for submitting
     return render_template('submitted.html')
