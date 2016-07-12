@@ -8,6 +8,8 @@ from flask import Flask
 from flask import request, render_template, jsonify, url_for
 from jira import JIRA
 import json, re, os
+import python.auto_populate as auto_populate
+import python.email_handler as email_handler
 
 # instantiates the Flask application
 app = Flask(__name__)
@@ -22,29 +24,32 @@ jira = JIRA(options=jira_options, basic_auth=('tommy.barnes', 'password'))
 
 global data
 
-# Template for the JSON object that becomes the issue fields:
-    # First Name
-    # Last Name
-    # Email Address
-    # Phone Number
-    # Position
-    # Position Type
-    # Location
-    # Degree Type + Degree
-    # Issue Title ("Position | Position Type | Location - Last, First")
-# api_request = '{ "fields": { "project": { "name": "JIRA-ATS", "key": "ATS" },' \
-# + ' "issuetype": { "name": "Task" },' \
-# + ' "customfield_10783": "%s",' \
-# + ' "customfield_10784": "%s",' \
-# + ' "customfield_10787": "%s",' \
-# + ' "customfield_10792": "%s",' \
-# + ' "customfield_10790": "%s",' \
-# + ' "customfield_10791": "%s",' \
-# + ' "customfield_10794": "%s",' \
-# + ' "customfield_10788": "%s",' \
-# + ' "customfield_10789": "%s",' \
-# + ' "summary": "%s", '\
-# + ' "description": "[Write observations of the candidate here]"} }'
+#####################
+#    Constants      #
+#####################
+
+BLACKLIST = "Reject Blacklist"
+WHITELIST = "Reject Whitelist"
+MOVED_ON = "Moved On"
+PHONE_SCREEN_REQUESTED = "Request Phone Screen"
+INTERVIEW_ASSIGNED = "Assign Interview"
+EXAM_ASSIGNED = "Assign Exam"
+INTERVIEW_COMPLETE = "Interview Evaluation"
+EXAM_COMPLETE = "Exam Completed"
+OFFER_MADE = "Approve"
+
+custom_fields = {
+    'FIRST'    : 'customfield_10783',
+    'LAST'     : 'customfield_10784',
+    'EMAIL'    : 'customfield_10787',
+    'PHONE'    : 'customfield_10792',
+    'POSITION' : 'customfield_10790',
+    'TYPE'     : 'customfield_10791',
+    'LOCATION' : 'customfield_10794',
+    'DEGREE'   : 'customfield_10788',
+    'TITLE'    : 'customfield_10789',
+}
+
 
 # Function that removes non-standard characters from profile information
 def sanitize(string):
@@ -67,6 +72,69 @@ def index():
 @app.route("/test", methods=['GET'])
 def test():
     return 'TESTING TEXT'
+
+# Route for post request webhooks
+@app.route('/webhooks', methods = ["POST"])
+def webhooks():=
+    data = request.get_json()
+    issue = data['issue']
+    
+    if 'transition' in data.keys():
+        transition = data['transition']
+        # stupid python with no switch cases
+
+        # Handle various transitions however you want (Guaranteed to have to_status)
+        if transition['transitionName'] == BLACKLIST:
+            '''
+            placeholders = {}
+            placeholders["first"] = fields[FIRST]
+            placeholders["last"] = fields[LAST]
+            placeholders["email"] = "daniel.smith@aardv.com"
+            placeholders["position"] = fields[POSITION]
+            temp = "hi %s"
+            email.send_email(placeholders, temp)'''
+            print transition['transitionName']
+        elif transition['transitionName'] == WHITELIST:
+            print transition['transitionName']
+        elif transition['transitionName'] == MOVED_ON:
+            print transition['transitionName']
+        elif transition['transitionName'] == PHONE_SCREEN_REQUESTED:
+            print transition['transitionName']
+        elif transition['transitionName'] == INTERVIEW_COMPLETE:
+            print issue['fields']['parent'].keys()
+            print transition['transitionName']
+        elif transition['transitionName'] == EXAM_ASSIGNED:
+            print transition['transitionName']
+        elif transition['transitionName'] == EXAM_COMPLETE:
+            print transition['transitionName']
+        elif transition['transitionName'] == OFFER_MADE:
+            fields = issue['fields']
+
+            # Create dictionary for auto_populate as placeholders
+            dic = { placeholder : fields[custom_fields[placeholder]] for placeholder in custom_fields }
+            dic['EMPLOYEE'] = dic["FIRST"] + " " + dic["LAST"]
+
+            # Create filled out document
+            auto_populate.create_document("Testing", dic)
+
+            # Send document to candidate
+            email_handler.send_email(dic, email_handler.ACCEPT_MESSAGE, ["Testing_%s_%s"%(dic["FIRST"],dic["LAST"])])
+            print transition['transitionName']
+        elif transition['transitionName'] == "Create":
+            print data['issue'].keys()
+            print data['issue']['fields']['issue'].keys()
+            print issue['fields']['parent'].keys()
+            print data['transition']
+        else:
+            # Should not happen
+            print "Transition not recognized: %s"%(transition['transitionName'])
+            print issue['fields']
+    else:
+        print "No transition: "
+        print data.keys()
+        print data['issue'].keys()
+        print issue['key']
+    return "OK"
 
 # Function that handles HTTP POST requests
 @app.route("/data", methods=['POST'])
@@ -139,6 +207,9 @@ def post_data():
             'customfield_10794': '%s' % request.form['Location'],
             'customfield_10788': '%s' % request.form['School'],
             'customfield_10789': '%s' % request.form['DegreeType'] + ' ' + request.form['Degree'],
+            'customfield_10909': '%s' % "daniel.smith",
+            'customfield_10910': '%s' % "tommy.barnes",
+            'customfield_10911': '%s' % "daniel.smith",
             'summary': '%s' % request.form['Position']+' | '+request.form['PositionType']+' | '+request.form['Location']+' - '+request.form['Last']+','+request.form['First'],
             'description': '[Write observations of the candidate here]'
             }
@@ -161,6 +232,10 @@ def post_data():
     # attach resume to issue corresponding to 'issue_key' and delete it locally
     jira.add_attachment(new_issue, resume_name)
     os.remove(resume_name)
+
+    # Assigning the 3 interviewers...
+
+    #new_issue.update(fields = {"Assignee 1" : "daniel.smith", "Assignee 2" : "tommy.barnes", "Assignee 3" : "daniel.smith"})
 
     # Routes the Candidate to a page that thanks him/her for submitting
     return render_template('submitted.html')
