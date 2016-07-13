@@ -86,6 +86,8 @@ def reformat(attr, attr_type):
                 'Legal': 'Legal Representative',
                 'RV Arbitrage Trader': 'RV Trader',
                 'Software Developer': 'Software Engineer'}[attr]
+    elif attr_type == "Phone":
+        return '('+attr[:3]+') '+attr[3:6]+'-'+attr[6:]
 
 # Function that handles HTTP GET requests (renders the Career page)
 @app.route("/", methods=['GET'])
@@ -183,14 +185,14 @@ def post_data():
             'customfield_10783': '%s' % request.form['First'],
             'customfield_10784': '%s' % request.form['Last'],
             'customfield_10787': '%s' % request.form['Email'],
-            'customfield_10792': '%s' % request.form['Phone'],
+            'customfield_10792': '%s' % reformat(request.form['Phone'],'Phone'),
             'customfield_10790': '%s' % reformat(request.form['Position'],'Position'),
             'customfield_10791': '%s' % request.form['PositionType'],
             'customfield_10794': '%s' % request.form['Location'],
             'customfield_10788': '%s' % request.form['School'],
             'customfield_10789': '%s' % request.form['DegreeType'] + ' ' + request.form['Degree'],
             'customfield_10909': '%s' % ASSIGNEE,
-            'summary': '%s' % request.form['Position']+' | '+request.form['PositionType']+' | '+request.form['Location']+' - '+request.form['Last']+','+request.form['First'],
+            'summary': '%s' % reformat(request.form['Position'],'Position')+' | '+request.form['PositionType']+' | '+request.form['Location']+' - '+request.form['Last']+','+request.form['First'],
             'description': '[Write observations of the candidate here]'
             }
     # REST API using 'curl' and stores the output in r

@@ -95,7 +95,7 @@ def parse(json_dict, values):
                     OFST = ROW_LENGTH - len(LOCATION)
                     LOCATION += [u''] * OFST
                     # print(LOCATION)
-            elif ROW_COUNT >= 7:
+            elif ROW_COUNT >= 8:
                 NAME = row
                 if len(NAME) < ROW_LENGTH:
                     OFST = ROW_LENGTH - len(NAME)
