@@ -166,8 +166,12 @@ def post_data():
     # 'body' list that will store the POST request's 'multipart/form-data' content
     d = request.get_data()
 
-    with open('../Assignee-App/interviewers-%s.json'%CURRENT_DATE, 'rb') as fh:
-        my_dict = json.load(fh)
+    try:
+        with open('/home/tmgaws/TMG-ATS-PROJECT/Assignee-App/interviewers-%s.json'%CURRENT_DATE, 'rb') as fh:
+            my_dict = json.load(fh)
+    except IOError:
+        with open('/home/tmgaws/TMG-ATS-PROJECT/Assignee-App/interviewers-backup.json', 'rb') as fh:
+            my_dict = json.load(fh)
 
     ASSIGNEE_DISPLAY_NAME = get_interviewer(my_dict[0]["Locations"][request.form['Location']]["Degrees"][reformat(request.form['DegreeType'],'DegreeType')][reformat(request.form['PositionType'],'PositionType')]["Requisitions"][reformat(request.form['Position'],'Position')]["Round 1"])
     ASSIGNEE_TUPLE = ASSIGNEE_DISPLAY_NAME.split(' ')
