@@ -69,7 +69,7 @@ def sanitize(string):
 
 def get_interviewer(my_list):
     num_interviewers = len(my_list)
-    interviewer_index = random.randint(0,num_interviewers-1)
+    interviewer_index = random.randint(0,num_interviewers)
     return my_list[interviewer_index]
 
 def lowerCase(letter):
