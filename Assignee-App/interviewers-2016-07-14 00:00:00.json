@@ -1,0 +1,834 @@
+[
+    {
+        "Locations": {
+            "Chicago": {
+                "Degrees": {
+                    "Graduate": {
+                        "FULL TIME": {
+                            "Requisitions": {
+                                "Algorithmic Trader": {
+                                    "Round 1": [
+                                        "Brandon Richardson",
+                                        "Eric Owiesny",
+                                        "Kwok Yan Chan"
+                                    ],
+                                    "Round 2": [
+                                        "Brandon Richardson",
+                                        "Lord Cole",
+                                        "Brian Green",
+                                        "Chris Sturgess",
+                                        "Eric Owiesny",
+                                        "Kwok Yan Chan"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street",
+                                        "Plinio Gayares",
+                                        "Joe Hraback"
+                                    ]
+                                },
+                                "Business Operations Associate": {
+                                    "Round 1": [],
+                                    "Round 2": [
+                                        "Chad Olson",
+                                        "Phil Vandermause"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street"
+                                    ]
+                                },
+                                "DevOps Engineer": {
+                                    "Round 1": [
+                                        "Jacob Bennett",
+                                        "Nick Pascullo"
+                                    ],
+                                    "Round 2": [
+                                        "Matt Leisinger",
+                                        "Matt Leisinger",
+                                        "Adam Florzak",
+                                        "Adam Florzak"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street",
+                                        "Darren Street"
+                                    ]
+                                },
+                                "Financial Analyst": {
+                                    "Round 1": [
+                                        "Brandon Mull"
+                                    ],
+                                    "Round 2": [
+                                        "Chad Isaacson",
+                                        "Chad Isaacson"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street",
+                                        "Darren Street"
+                                    ]
+                                },
+                                "Legal Representative": {
+                                    "Round 1": [],
+                                    "Round 2": [
+                                        "Chad Isaacson"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street"
+                                    ]
+                                },
+                                "Network Engineer": {
+                                    "Round 1": [
+                                        "William Parkhurst"
+                                    ],
+                                    "Round 2": [
+                                        "Ray Petrella",
+                                        "Ray Petrella"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street",
+                                        "Darren Street"
+                                    ]
+                                },
+                                "RV Trader": {
+                                    "Round 1": [
+                                        "Patrick Jia",
+                                        "Jonathan Osting",
+                                        "Dmitriy Glumov",
+                                        "Dan Lewis",
+                                        "Zhang Zhao",
+                                        "Tyler Crookston",
+                                        "Josh Leonard-Goodwill",
+                                        "Steven Burkholder",
+                                        "John Kato",
+                                        "Josh Matalon"
+                                    ],
+                                    "Round 2": [
+                                        "Mark Bauer",
+                                        "James Eun",
+                                        "Michael Goff",
+                                        "Chris Barnes",
+                                        "Adam Machones",
+                                        "David Nole"
+                                    ],
+                                    "Round 3": [
+                                        "Plinio Gayares",
+                                        "Spencer Burns"
+                                    ]
+                                },
+                                "Software Engineer": {
+                                    "Round 1": [],
+                                    "Round 2": [
+                                        "Stan Bryl",
+                                        "Matt Leisinger",
+                                        "Sergiy Mesropyan",
+                                        "Stan Bryl",
+                                        "Matt Leisinger",
+                                        "Sergiy Mesropyan"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street",
+                                        "Darren Street"
+                                    ]
+                                },
+                                "Systems Engineer": {
+                                    "Round 1": [
+                                        "Jon Coffee"
+                                    ],
+                                    "Round 2": [
+                                        "Adam Florzak",
+                                        "Adam Florzak"
+                                    ],
+                                    "Round 3": [
+                                        "Adam Florzak",
+                                        "Adam Florzak"
+                                    ]
+                                }
+                            }
+                        },
+                        "INTERN": {
+                            "Requisitions": {
+                                "Algorithmic Trader": {
+                                    "Round 1": [
+                                        "Brandon Richardson",
+                                        "Eric Owiesny",
+                                        "Kwok Yan Chan"
+                                    ],
+                                    "Round 2": [
+                                        "Brandon Richardson",
+                                        "Lord Cole",
+                                        "Brian Green",
+                                        "Chris Sturgess",
+                                        "Eric Owiesny",
+                                        "Kwok Yan Chan"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street",
+                                        "Plinio Gayares",
+                                        "Joe Hraback"
+                                    ]
+                                },
+                                "Business Operations Associate": {
+                                    "Round 1": [],
+                                    "Round 2": [
+                                        "Chad Olson",
+                                        "Phil Vandermause"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street"
+                                    ]
+                                },
+                                "DevOps Engineer": {
+                                    "Round 1": [
+                                        "Jacob Bennett",
+                                        "Nick Pascullo"
+                                    ],
+                                    "Round 2": [
+                                        "Matt Leisinger",
+                                        "Matt Leisinger",
+                                        "Adam Florzak",
+                                        "Adam Florzak"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street",
+                                        "Darren Street"
+                                    ]
+                                },
+                                "Financial Analyst": {
+                                    "Round 1": [
+                                        "Brandon Mull"
+                                    ],
+                                    "Round 2": [
+                                        "Chad Isaacson",
+                                        "Chad Isaacson"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street",
+                                        "Darren Street"
+                                    ]
+                                },
+                                "Legal Representative": {
+                                    "Round 1": [],
+                                    "Round 2": [
+                                        "Chad Isaacson"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street"
+                                    ]
+                                },
+                                "Network Engineer": {
+                                    "Round 1": [
+                                        "William Parkhurst"
+                                    ],
+                                    "Round 2": [
+                                        "Ray Petrella",
+                                        "Ray Petrella"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street",
+                                        "Darren Street"
+                                    ]
+                                },
+                                "RV Trader": {
+                                    "Round 1": [
+                                        "Patrick Jia",
+                                        "Jonathan Osting",
+                                        "Dmitriy Glumov",
+                                        "Dan Lewis",
+                                        "Zhang Zhao",
+                                        "Tyler Crookston",
+                                        "Josh Leonard-Goodwill",
+                                        "Steven Burkholder",
+                                        "John Kato",
+                                        "Josh Matalon"
+                                    ],
+                                    "Round 2": [
+                                        "Mark Bauer",
+                                        "James Eun",
+                                        "Michael Goff",
+                                        "Chris Barnes",
+                                        "Adam Machones",
+                                        "David Nole"
+                                    ],
+                                    "Round 3": [
+                                        "Plinio Gayares",
+                                        "Spencer Burns"
+                                    ]
+                                },
+                                "Software Engineer": {
+                                    "Round 1": [
+                                        "Dennis Wang",
+                                        "Nick Pascullo",
+                                        "Jacob Bennett"
+                                    ],
+                                    "Round 2": [
+                                        "Stan Bryl",
+                                        "Matt Leisinger",
+                                        "Sergiy Mesropyan",
+                                        "Stan Bryl",
+                                        "Matt Leisinger",
+                                        "Sergiy Mesropyan"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street",
+                                        "Darren Street"
+                                    ]
+                                },
+                                "Systems Engineer": {
+                                    "Round 1": [
+                                        "Jon Coffee"
+                                    ],
+                                    "Round 2": [
+                                        "Adam Florzak",
+                                        "Adam Florzak"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street",
+                                        "Darren Street"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "Undergraduate": {
+                        "FULL TIME": {
+                            "Requisitions": {
+                                "Algorithmic Trader": {
+                                    "Round 1": [
+                                        "Lord Cole",
+                                        "Brian Green",
+                                        "Chris Sturgess"
+                                    ],
+                                    "Round 2": [
+                                        "Brandon Richardson",
+                                        "Lord Cole",
+                                        "Brian Green",
+                                        "Chris Sturgess",
+                                        "Eric Owiesny",
+                                        "Kwok Yan Chan"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street",
+                                        "Plinio Gayares",
+                                        "Joe Hraback"
+                                    ]
+                                },
+                                "Business Operations Associate": {
+                                    "Round 1": [
+                                        "Tom Larocque",
+                                        "Josh Henderson",
+                                        "James Longo"
+                                    ],
+                                    "Round 2": [
+                                        "Chad Olson",
+                                        "Phil Vandermause"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street"
+                                    ]
+                                },
+                                "DevOps Engineer": {
+                                    "Round 1": [
+                                        "Jacob Bennett",
+                                        "Nick Pascullo"
+                                    ],
+                                    "Round 2": [
+                                        "Matt Leisinger",
+                                        "Matt Leisinger",
+                                        "Adam Florzak",
+                                        "Adam Florzak"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street",
+                                        "Darren Street"
+                                    ]
+                                },
+                                "Financial Analyst": {
+                                    "Round 1": [
+                                        "Brandon Mull"
+                                    ],
+                                    "Round 2": [
+                                        "Chad Isaacson",
+                                        "Chad Isaacson"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street",
+                                        "Darren Street"
+                                    ]
+                                },
+                                "Legal Representative": {
+                                    "Round 1": [
+                                        "Hilary Hershberger"
+                                    ],
+                                    "Round 2": [
+                                        "Chad Isaacson"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street"
+                                    ]
+                                },
+                                "Network Engineer": {
+                                    "Round 1": [
+                                        "William Parkhurst"
+                                    ],
+                                    "Round 2": [
+                                        "Ray Petrella",
+                                        "Ray Petrella"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street",
+                                        "Darren Street"
+                                    ]
+                                },
+                                "RV Trader": {
+                                    "Round 1": [
+                                        "David Erickson",
+                                        "Zachary Brown",
+                                        "Kris Williams",
+                                        "Jonathan Schoder",
+                                        "David Lorentzen"
+                                    ],
+                                    "Round 2": [
+                                        "Mark Bauer",
+                                        "James Eun",
+                                        "Michael Goff",
+                                        "Chris Barnes",
+                                        "Adam Machones",
+                                        "David Nole"
+                                    ],
+                                    "Round 3": [
+                                        "Plinio Gayares",
+                                        "Spencer Burns"
+                                    ]
+                                },
+                                "Software Engineer": {
+                                    "Round 1": [],
+                                    "Round 2": [
+                                        "Stan Bryl",
+                                        "Matt Leisinger",
+                                        "Sergiy Mesropyan",
+                                        "Stan Bryl",
+                                        "Matt Leisinger",
+                                        "Sergiy Mesropyan"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street",
+                                        "Darren Street"
+                                    ]
+                                },
+                                "Systems Engineer": {
+                                    "Round 1": [
+                                        "Jon Coffee"
+                                    ],
+                                    "Round 2": [
+                                        "Adam Florzak",
+                                        "Adam Florzak"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street",
+                                        "Darren Street"
+                                    ]
+                                }
+                            }
+                        },
+                        "INTERN": {
+                            "Requisitions": {
+                                "Algorithmic Trader": {
+                                    "Round 1": [
+                                        "Lord Cole",
+                                        "Brian Green",
+                                        "Chris Sturgess"
+                                    ],
+                                    "Round 2": [
+                                        "Brandon Richardson",
+                                        "Lord Cole",
+                                        "Brian Green",
+                                        "Chris Sturgess",
+                                        "Eric Owiesny",
+                                        "Kwok Yan Chan"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street",
+                                        "Plinio Gayares",
+                                        "Joe Hraback"
+                                    ]
+                                },
+                                "Business Operations Associate": {
+                                    "Round 1": [
+                                        "Tom Larocque",
+                                        "Josh Henderson",
+                                        "James Longo"
+                                    ],
+                                    "Round 2": [
+                                        "Chad Olson",
+                                        "Phil Vandermause"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street"
+                                    ]
+                                },
+                                "DevOps Engineer": {
+                                    "Round 1": [
+                                        "Jacob Bennett",
+                                        "Nick Pascullo"
+                                    ],
+                                    "Round 2": [
+                                        "Matt Leisinger",
+                                        "Matt Leisinger",
+                                        "Adam Florzak",
+                                        "Adam Florzak"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street",
+                                        "Darren Street"
+                                    ]
+                                },
+                                "Financial Analyst": {
+                                    "Round 1": [
+                                        "Brandon Mull"
+                                    ],
+                                    "Round 2": [
+                                        "Chad Isaacson",
+                                        "Chad Isaacson"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street",
+                                        "Darren Street"
+                                    ]
+                                },
+                                "Legal Representative": {
+                                    "Round 1": [
+                                        "Hilary Hershberger"
+                                    ],
+                                    "Round 2": [
+                                        "Chad Isaacson"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street"
+                                    ]
+                                },
+                                "Network Engineer": {
+                                    "Round 1": [
+                                        "William Parkhurst"
+                                    ],
+                                    "Round 2": [
+                                        "Ray Petrella",
+                                        "Ray Petrella"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street",
+                                        "Darren Street"
+                                    ]
+                                },
+                                "RV Trader": {
+                                    "Round 1": [
+                                        "David Erickson",
+                                        "Zachary Brown",
+                                        "Kris Williams",
+                                        "Jonathan Schoder",
+                                        "David Lorentzen"
+                                    ],
+                                    "Round 2": [
+                                        "Mark Bauer",
+                                        "James Eun",
+                                        "Michael Goff",
+                                        "Chris Barnes",
+                                        "Adam Machones",
+                                        "David Nole"
+                                    ],
+                                    "Round 3": [
+                                        "Plinio Gayares",
+                                        "Spencer Burns"
+                                    ]
+                                },
+                                "Software Engineer": {
+                                    "Round 1": [],
+                                    "Round 2": [
+                                        "Stan Bryl",
+                                        "Matt Leisinger",
+                                        "Sergiy Mesropyan",
+                                        "Stan Bryl",
+                                        "Matt Leisinger",
+                                        "Sergiy Mesropyan"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street",
+                                        "Darren Street"
+                                    ]
+                                },
+                                "Systems Engineer": {
+                                    "Round 1": [
+                                        "Jon Coffee"
+                                    ],
+                                    "Round 2": [
+                                        "Adam Florzak",
+                                        "Adam Florzak"
+                                    ],
+                                    "Round 3": [
+                                        "Darren Street",
+                                        "Darren Street"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "Martigny": {
+                "Degrees": {
+                    "Graduate": {
+                        "FULL TIME": {
+                            "Requisitions": {
+                                "Algorithmic Trader": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "Business Operations Associate": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "DevOps Engineer": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "Financial Analyst": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "Legal Representative": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "Network Engineer": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "RV Trader": {
+                                    "Round 1": [
+                                        "Marc De Murat",
+                                        "Felipe Parra"
+                                    ],
+                                    "Round 2": [
+                                        "Mark Bauer",
+                                        "James Eun",
+                                        "Michael Goff",
+                                        "Chris Barnes",
+                                        "Adam Machones",
+                                        "David Nole"
+                                    ],
+                                    "Round 3": [
+                                        "Plinio Gayares",
+                                        "Spencer Burns"
+                                    ]
+                                },
+                                "Software Engineer": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "Systems Engineer": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                }
+                            }
+                        },
+                        "INTERN": {
+                            "Requisitions": {
+                                "Algorithmic Trader": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "Business Operations Associate": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "DevOps Engineer": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "Financial Analyst": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "Legal Representative": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "Network Engineer": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "RV Trader": {
+                                    "Round 1": [
+                                        "Marc De Murat",
+                                        "Felipe Parra"
+                                    ],
+                                    "Round 2": [
+                                        "Mark Bauer",
+                                        "James Eun",
+                                        "Michael Goff",
+                                        "Chris Barnes",
+                                        "Adam Machones",
+                                        "David Nole"
+                                    ],
+                                    "Round 3": [
+                                        "Plinio Gayares",
+                                        "Spencer Burns"
+                                    ]
+                                },
+                                "Software Engineer": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "Systems Engineer": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                }
+                            }
+                        }
+                    },
+                    "Undergraduate": {
+                        "FULL TIME": {
+                            "Requisitions": {
+                                "Algorithmic Trader": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "Business Operations Associate": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "DevOps Engineer": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "Financial Analyst": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "Legal Representative": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "Network Engineer": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "RV Trader": {
+                                    "Round 1": [
+                                        "Zachary Brown",
+                                        "Kris Williams",
+                                        "Christian Totera",
+                                        "Jonathan Schoder",
+                                        "David Lorentzen"
+                                    ],
+                                    "Round 2": [
+                                        "Mark Bauer",
+                                        "James Eun",
+                                        "Michael Goff",
+                                        "Chris Barnes",
+                                        "Adam Machones",
+                                        "David Nole"
+                                    ],
+                                    "Round 3": [
+                                        "Plinio Gayares",
+                                        "Spencer Burns"
+                                    ]
+                                },
+                                "Software Engineer": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "Systems Engineer": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                }
+                            }
+                        },
+                        "INTERN": {
+                            "Requisitions": {
+                                "Algorithmic Trader": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "Business Operations Associate": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "DevOps Engineer": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "Financial Analyst": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "Legal Representative": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "Network Engineer": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "RV Trader": {
+                                    "Round 1": [
+                                        "Christian Totera"
+                                    ],
+                                    "Round 2": [
+                                        "Mark Bauer",
+                                        "James Eun",
+                                        "Michael Goff",
+                                        "Chris Barnes",
+                                        "Adam Machones",
+                                        "David Nole"
+                                    ],
+                                    "Round 3": [
+                                        "Plinio Gayares",
+                                        "Spencer Burns"
+                                    ]
+                                },
+                                "Software Engineer": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                },
+                                "Systems Engineer": {
+                                    "Round 1": [],
+                                    "Round 2": [],
+                                    "Round 3": []
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+]
