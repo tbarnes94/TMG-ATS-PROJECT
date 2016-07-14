@@ -80,12 +80,6 @@ def reformat(attr, attr_type):
         return {'B.A': 'Undergraduate', 'B.S.': 'Undergraduate', 'M.A.': 'Graduate', 'M.S.': 'Graduate', 'PhD': 'Graduate'}[attr]
     elif attr_type == 'PositionType':
         return {'Internship': 'INTERN', 'Full Time': 'FULL TIME'}[attr]
-    elif attr_type == 'Position':
-        return {'Algorithmic Trader': 'Algorithmic Trader',
-                'Information Technology': 'Systems Engineer',
-                'Legal': 'Legal Representative',
-                'RV Arbitrage Trader': 'RV Trader',
-                'Software Developer': 'Software Engineer'}[attr]
     elif attr_type == "Phone":
         return '('+attr[:3]+') '+attr[3:6]+'-'+attr[6:]
 
@@ -186,13 +180,13 @@ def post_data():
             'customfield_10784': '%s' % request.form['Last'],
             'customfield_10787': '%s' % request.form['Email'],
             'customfield_10792': '%s' % reformat(request.form['Phone'],'Phone'),
-            'customfield_10790': '%s' % reformat(request.form['Position'],'Position'),
+            'customfield_10790': '%s' % request.form['Position'],
             'customfield_10791': '%s' % request.form['PositionType'],
             'customfield_10794': '%s' % request.form['Location'],
             'customfield_10788': '%s' % request.form['School'],
             'customfield_10789': '%s' % request.form['DegreeType'] + ' ' + request.form['Degree'],
             'customfield_10909': '%s' % ASSIGNEE,
-            'summary': '%s' % reformat(request.form['Position'],'Position')+' | '+request.form['PositionType']+' | '+request.form['Location']+' - '+request.form['Last']+','+request.form['First'],
+            'summary': '%s' % request.form['Position']+' | '+request.form['PositionType']+' | '+request.form['Location']+' - '+request.form['Last']+','+request.form['First'],
             'description': '[Write observations of the candidate here]'
             }
     # REST API using 'curl' and stores the output in r
