@@ -169,7 +169,7 @@ def post_data():
         with open('/home/tmgaws/TMG-ATS-PROJECT/Assignee-App/interviewers-backup.json', 'rb') as fh:
             my_dict = json.load(fh)
 
-    ASSIGNEE_DISPLAY_NAME = get_interviewer(my_dict[0]["Locations"][request.form['Location']]["Degrees"][reformat(request.form['DegreeType'],'DegreeType')][reformat(request.form['PositionType'],'PositionType')]["Requisitions"][reformat(request.form['Position'],'Position')]["Round 1"])
+    ASSIGNEE_DISPLAY_NAME = get_interviewer(my_dict[0]["Locations"][request.form['Location']]["Degrees"][reformat(request.form['DegreeType'],'DegreeType')][reformat(request.form['PositionType'],'PositionType')]["Requisitions"][request.form['Position']]["Round 1"])
     ASSIGNEE_TUPLE = ASSIGNEE_DISPLAY_NAME.split(' ')
     ASSIGNEE = lowerCase(ASSIGNEE_TUPLE[0][0]) + ASSIGNEE_TUPLE[0][1:] + '.' + lowerCase(ASSIGNEE_TUPLE[1][0]) + ASSIGNEE_TUPLE[1][1:]
 
